@@ -54,6 +54,20 @@
 
 }
 
+- (IBAction)callPhoneTwo:(id)sender {
+    UIAlertView *calert;
+    NSString *phNo = self.telefono2.text ;
+    NSURL *phoneUrl = [NSURL URLWithString:[NSString  stringWithFormat:@"telprompt:%@",phNo]];
+    
+    if ([[UIApplication sharedApplication] canOpenURL:phoneUrl]) {
+        [[UIApplication sharedApplication] openURL:phoneUrl];
+    } else
+    {
+        calert = [[UIAlertView alloc]initWithTitle:@"Alerta" message:@"La funcionalidad de llamadas no está disponible." delegate:nil cancelButtonTitle:@"ok" otherButtonTitles:nil, nil];
+        [calert show];
+    }
+
+}
 
 - (void) viewDidLoad {
     [super viewDidLoad];
@@ -85,6 +99,11 @@
         
         self.telefono1.text = response[@"data"][@"phones"][0];
         self.telefono2.text = response[@"data"][@"phones"][1];
+        
+        if ([self.telefono2.text isEqualToString:@"N/A"]) {
+            [self.callPhone2 setEnabled:NO];
+        }
+
         
         dispatch_sync(dispatch_get_main_queue(), ^ {
             self.desc.text = response[@"data"][@"description"];
