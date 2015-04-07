@@ -22,7 +22,7 @@
 }
 
 -(void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error{
-    UIAlertView *errorAlert = [[UIAlertView alloc]initWithTitle:@"Error" message:@"There was an error retrieving your location" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+    UIAlertView *errorAlert = [[UIAlertView alloc]initWithTitle:@"Error" message:@"Ocurrió un error tratando de establecer su ubicación." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
     [errorAlert show];
     NSLog(@"Error: %@",error.description);
 }
@@ -84,8 +84,8 @@
     // Creates a marker in the center of the map.
     GMSMarker *marker = [[GMSMarker alloc] init];
     marker.position = CLLocationCoordinate2DMake(crnCurrentLoc.coordinate.latitude, crnCurrentLoc.coordinate.longitude);
-    marker.title = @"my location";
-    marker.snippet = @"Australia";
+    marker.title = @"Mi ubicación";
+    marker.snippet = @"Estoy aquí";
     
     mapView.selectedMarker = marker;
     
